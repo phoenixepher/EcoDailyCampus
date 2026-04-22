@@ -5,14 +5,9 @@
     }
   },
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1.php"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/$1"
-    }
+    { "src": "/api/(.*)", "dest": "/api/$1.php" },
+    { "src": "/src/(.*)", "dest": "/src/$1" },
+    { "src": "/(.*)", "dest": "/public/$1" }
   ],
   "env": {
     "DB_DRIVER": "pgsql"
