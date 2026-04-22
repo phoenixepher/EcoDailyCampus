@@ -1,0 +1,172 @@
+/* Settings Page Styling */
+.settings-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+}
+
+.settings-sidebar {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    height: fit-content;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.settings-title {
+    font-size: 1.4rem;
+    font-weight: 900;
+    margin-bottom: 8px;
+    color: var(--color-secondary);
+}
+
+.settings-subtitle {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+.settings-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.s-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: none;
+    background: transparent;
+    color: #64748b;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+}
+
+.s-nav-item:hover {
+    background: #f1f5f9;
+    color: var(--color-secondary);
+}
+
+.s-nav-item.active {
+    background: #f0fdf4;
+    color: var(--color-primary);
+}
+
+.settings-section-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.section-header {
+    margin-bottom: 30px;
+}
+
+.section-header h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-secondary);
+}
+
+.section-header p {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+/* Address List & Cards */
+.address-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.address-card {
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.address-card:hover {
+    border-color: var(--color-primary);
+    background: #fcfdfd;
+}
+
+.address-card.default {
+    border-color: var(--color-primary);
+    background: #f0fdf4;
+}
+
+.addr-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.addr-name {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+}
+
+.default-badge {
+    background: var(--color-primary);
+    color: white;
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.addr-phone {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+.addr-text {
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.addr-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    cursor: pointer;
+    padding: 0;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+.btn-link.text-danger {
+    color: #ef4444;
+}
+
+@media (max-width: 900px) {
+    .settings-layout {
+        grid-template-columns: 1fr;
+    }
+}

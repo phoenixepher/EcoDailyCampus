@@ -1,0 +1,85 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Eco Bamboo Flask",
+      "price": 120000,
+      "description": "Double-wall insulated flask made from sustainable bamboo and stainless steel.",
+      "category": "Lifestyle",
+      "image": "https://images.unsplash.com/photo-1602143307185-8a155ca7bc31?auto=format&fit=crop&q=80&w=600",
+      "rating": 4.8,
+      "stock": 25,
+      "ecoPoints": 50,
+      "isNew": true
+    },
+    {
+      "id": 2,
+      "name": "Recycled Tote Bag",
+      "price": 45000,
+      "description": "Durable tote bag made from 100% recycled canvas, perfect for campus shopping.",
+      "category": "Accessories",
+      "image": "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=600",
+      "rating": 4.5,
+      "stock": 40,
+      "ecoPoints": 20,
+      "isNew": false
+    },
+    {
+      "id": 3,
+      "name": "Solar Powered Powerbank",
+      "price": 350000,
+      "description": "High-capacity solar power bank for eco-friendly charging on the go.",
+      "category": "Electronics",
+      "image": "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&q=80&w=600",
+      "rating": 4.7,
+      "stock": 12,
+      "ecoPoints": 100,
+      "isNew": true
+    },
+    {
+      "id": 4,
+      "name": "Reusable Cutlery Set",
+      "price": 35000,
+      "description": "Lightweight bamboo cutlery set including fork, spoon, knife, and straw.",
+      "category": "Dining",
+      "image": "https://images.unsplash.com/photo-1584346133934-a3afd2a33c4c?auto=format&fit=crop&q=80&w=600",
+      "rating": 4.9,
+      "stock": 50,
+      "ecoPoints": 15,
+      "isNew": false
+    },
+    {
+      "id": 5,
+      "name": "Organic Cotton Hoodie",
+      "price": 280000,
+      "description": "Soft and comfortable hoodie made from organic cotton, fair trade certified.",
+      "category": "Apparel",
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&q=80&w=600",
+      "rating": 4.6,
+      "stock": 18,
+      "ecoPoints": 75,
+      "isNew": false
+    },
+    {
+      "id": 6,
+      "name": "Eco-Friendly Notebook",
+      "price": 25000,
+      "description": "Notebook made from recycled paper with a biodegradable cover.",
+      "category": "Stationery",
+      "image": "https://images.unsplash.com/photo-1531346878377-a5be20888e57?auto=format&fit=crop&q=80&w=600",
+      "rating": 4.4,
+      "stock": 60,
+      "ecoPoints": 10,
+      "isNew": false
+    }
+  ],
+  "categories": [
+    "All",
+    "Lifestyle",
+    "Accessories",
+    "Electronics",
+    "Dining",
+    "Apparel",
+    "Stationery"
+  ]
+}

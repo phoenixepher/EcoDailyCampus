@@ -1,0 +1,41 @@
+/* Base */
+@import url('base/variables.css');
+@import url('base/reset.css');
+@import url('base/typography.css');
+
+/* Layouts */
+@import url('layout/grid.css');
+@import url('layout/header.css');
+@import url('layout/footer.css');
+
+/* Components */
+@import url('components/navbar.css');
+@import url('components/button.css');
+@import url('components/card.css');
+@import url('components/modal.css');
+
+/* Pages */
+@import url('pages/auth.css');
+@import url('pages/home.css');
+@import url('pages/product.css');
+@import url('pages/profile.css');
+@import url('pages/admin.css');
+@import url('pages/dashboard.css');
+@import url('pages/ecommerce.css');
+@import url('pages/challenges.css');
+@import url('pages/impact.css');
+@import url('pages/settings.css');
+@import url('pages/about.css');
+@import url('responsive_fix.css');
+
+
+/* Main Container */
+#app {
+    padding-top: 100px; /* To prevent content from being hidden under fixed navbar */
+    min-height: calc(100vh - 100px);
+}
+
+/* Utilities */
+.hidden {
+    display: none !important;
+}

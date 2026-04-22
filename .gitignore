@@ -1,0 +1,25 @@
+# EcoDaily Campus - Git Ignore
+
+# Database & Local Config
+api/config/db.php
+api/scratch/
+database/dumps/
+*.sql
+!api/config/supabase_schema.sql
+
+# Uploads & Assets
+public/uploads/*
+!public/uploads/.gitkeep
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.env
+
+# Vercel & Deployment
+.vercel/
+node_modules/
+dist/
+build/

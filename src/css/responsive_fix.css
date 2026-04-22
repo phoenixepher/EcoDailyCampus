@@ -1,0 +1,233 @@
+/* 
+ * Professional Responsive System - EcoDaily Campus
+ * Handling all screen sizes from mobile to large desktop
+ */
+
+/* Mobile & Tablet Adjustments (< 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* Navbar Mobile Fixes */
+    .nav-links {
+        display: none;
+    }
+    
+    .user-name-text {
+        display: none;
+    }
+
+    /* Hero Section Mobile */
+    .hero-section {
+        padding: 60px 0;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        margin: 0 auto 30px;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-image-container {
+        display: flex;
+        margin-top: 40px;
+        order: 2; /* Ensure image is below text on mobile */
+    }
+
+    .hero-image {
+        height: 300px; /* Reduced height for mobile */
+        width: 100%;
+    }
+
+    .hero-floating-card {
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 320px;
+    }
+
+    .hero-stats {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+}
+
+/* Tablet & Mobile (< 768px) */
+@media (max-width: 768px) {
+    /* Home Section Titles */
+    .section-title h2 {
+        font-size: 1.75rem;
+    }
+
+    /* Settings Page Mobile Layout */
+    .settings-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .settings-sidebar {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .settings-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        gap: 10px;
+    }
+
+    .s-nav-item {
+        white-space: nowrap;
+        padding: 10px 15px;
+    }
+
+    /* Cart Page Mobile */
+    .cart-item-card {
+        grid-template-columns: 80px 1fr;
+        gap: 15px;
+    }
+
+    .ci-controls {
+        grid-column: 1 / -1;
+        justify-content: space-between;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px dashed #eee;
+    }
+
+    /* Checkout Page Mobile */
+    .checkout-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .order-preview-card {
+        position: static !important;
+        order: -1;
+        margin-bottom: 30px;
+    }
+
+    .address-select-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Impact Dashboard Mobile */
+    .impact-stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .impact-main-content {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Eco Challenges Responsiveness */
+@media (max-width: 768px) {
+    .challenges-tabs {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 15px;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .challenge-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .data-table thead {
+        display: none;
+    }
+    
+    .data-table tr {
+        display: block;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #f8fafc;
+        border-radius: 15px;
+    }
+    
+    .data-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border: none;
+    }
+    
+    .data-table td::before {
+        content: attr(data-label);
+        font-weight: 800;
+        color: var(--color-secondary);
+    }
+}
+
+/* Wishlist Responsiveness */
+@media (max-width: 640px) {
+    .wishlist-grid, .product-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 15px !important;
+    }
+}
+
+/* Admin Portal Responsiveness */
+@media (max-width: 1024px) {
+    .admin-top-bar {
+        position: relative;
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    .admin-dashboard {
+        padding-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-overview-grid {
+        grid-template-columns: 1fr 1fr !important;
+    }
+    
+    .pro-table thead {
+        display: none;
+    }
+    
+    .pro-table tr {
+        display: block;
+        margin-bottom: 20px;
+        background: white;
+        border: 1px solid #eee;
+        border-radius: 15px;
+        padding: 15px;
+    }
+    
+    .pro-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border: none;
+    }
+    
+    .pro-table td::before {
+        content: attr(data-label);
+        font-weight: 800;
+        color: var(--color-secondary);
+    }
+}
+
+/* Modals */
+@media (max-width: 600px) {
+    .modal-card {
+        width: 95% !important;
+        margin: 10px !important;
+    }
+}

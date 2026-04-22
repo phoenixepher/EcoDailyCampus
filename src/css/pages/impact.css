@@ -1,0 +1,171 @@
+/* Impact Dashboard Styling */
+
+.impact-page {
+    padding-bottom: 5rem;
+}
+
+.impact-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.impact-card-stat {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+.is-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+}
+
+.is-icon.blue { background: #eff6ff; }
+.is-icon.green { background: #f0fdf4; }
+.is-icon.teal { background: #f0fdfa; }
+
+.is-value {
+    font-size: 2rem;
+    margin: 5px 0;
+    color: #111827;
+}
+
+.is-label {
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.is-help {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    margin: 0;
+}
+
+.is-help a {
+    color: #10b981;
+    font-weight: 600;
+}
+
+/* Layout Main Content */
+.impact-main-content {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 2rem;
+}
+
+.impact-main-card, .impact-sidebar-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.impact-main-card h3, .impact-sidebar-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: #111827;
+}
+
+/* Activity Feed */
+.activity-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    border-radius: 15px;
+    background: #f9fafb;
+    border: 1px solid #f3f4f6;
+}
+
+.act-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.act-details {
+    flex-grow: 1;
+}
+
+.act-text {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #374151;
+}
+
+.act-date {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* Sidebar Progress Circle */
+.badge-progress-box {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.progress-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(#10b981 var(--pc-percent, 0%), #f3f4f6 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    position: relative;
+}
+
+.progress-circle::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: white;
+}
+
+.pc-val {
+    position: relative;
+    z-index: 1;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #10b981;
+}
+
+.badge-target {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+@media (max-width: 992px) {
+    .impact-main-content {
+        grid-template-columns: 1fr;
+    }
+}
