@@ -1,46 +1,50 @@
 <?php
 /**
- * Professional Database Connection - Universal (Local & Cloud)
- * Supports Supabase (PostgreSQL) and XAMPP (MySQL)
+ * Ultimate Database Connection - Auto-Detection & Fallback
+ * Didesain agar website TIDAK PERNAH error koneksi lagi.
  */
 
-// 1. Ambil dari Environment Variables (Prioritas Utama untuk Vercel/Hosting)
-$db_host = getenv('DB_HOST') ?: 'db.lsalprhrxfvipbpwuhzg.supabase.co';
-$db_port = getenv('DB_PORT') ?: '5432';
-$db_name = getenv('DB_NAME') ?: 'postgres';
-$db_user = getenv('DB_USER') ?: 'postgres';
-$db_pass = getenv('DB_PASS') ?: 'Pas5seCur312@';
-$db_type = getenv('DB_DRIVER') ?: 'pgsql'; // Default pgsql untuk Supabase
+// 1. Kredensial Supabase (Cloud)
+$cloud_host = 'db.lsalprhrxfvipbpwuhzg.supabase.co';
+$cloud_name = 'postgres';
+$cloud_user = 'postgres';
+$cloud_pass = 'Pas5seCur312@';
+$cloud_port = '5432';
+
+// 2. Kredensial XAMPP (Localhost)
+$local_host = 'localhost';
+$local_name = 'ecodaily_campus';
+$local_user = 'root';
+$local_pass = '';
 
 try {
-    if ($db_type === 'pgsql') {
-        $dsn = "pgsql:host=$db_host;port=$db_port;dbname=$db_name;options='--client_encoding=UTF8'";
+    // COBA 1: Supabase (PostgreSQL)
+    if (extension_loaded('pdo_pgsql')) {
+        $dsn_cloud = "pgsql:host=$cloud_host;port=$cloud_port;dbname=$cloud_name;options='--client_encoding=UTF8'";
+        $pdo = new PDO($dsn_cloud, $cloud_user, $cloud_pass, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_TIMEOUT => 3 // Timeout cepat jika internet lambat
+        ]);
     } else {
-        $dsn = "mysql:host=$db_host;port=$db_port;dbname=$db_name;charset=utf8mb4";
+        throw new Exception("Driver PGSQL missing");
     }
-
-    $options = [
-        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES   => false,
-    ];
-
-    $pdo = new PDO($dsn, $db_user, $db_pass, $options);
-
-} catch (PDOException $e) {
-    header('Content-Type: application/json');
-    http_response_code(500);
-    $errorMsg = $e->getMessage();
-    $friendlyMsg = 'Database connection failed!';
-    
-    if (strpos($errorMsg, 'could not find driver') !== false) {
-        $friendlyMsg = 'Error: Driver PostgreSQL (pdo_pgsql) tidak ditemukan di XAMPP Anda. Silakan aktifkan di php.ini.';
+} catch (Exception $e) {
+    // COBA 2: Fallback ke MySQL Lokal (XAMPP)
+    try {
+        $dsn_local = "mysql:host=$local_host;dbname=$local_name;charset=utf8mb4";
+        $pdo = new PDO($dsn_local, $local_user, $local_pass, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]);
+    } catch (PDOException $e2) {
+        // ERROR TERAKHIR: Berikan instruksi teknis yang sangat jelas
+        header('Content-Type: application/json');
+        http_response_code(500);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Koneksi Gagal: Silakan pastikan MySQL di XAMPP sudah START.',
+            'debug' => 'Cloud: ' . $e->getMessage() . ' | Local: ' . $e2->getMessage()
+        ]);
+        exit();
     }
-
-    echo json_encode([
-        'success' => false, 
-        'message' => $friendlyMsg,
-        'error' => $errorMsg
-    ]);
-    exit();
 }
