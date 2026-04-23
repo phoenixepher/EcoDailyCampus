@@ -103,7 +103,7 @@ if ($method === 'POST') {
         // Handle Avatar Upload
         $avatarUrl = null;
         if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === 0) {
-            $uploadDir = '../uploads/avatars/';
+            $uploadDir = '../public/uploads/avatars/';
             if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
             
             $ext = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
