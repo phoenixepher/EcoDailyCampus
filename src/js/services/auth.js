@@ -1,8 +1,10 @@
 /**
- * Auth Service - MySQL Backend Authentication
+ * Auth Service - MySQL Backend Authentication (Smart Routing)
  */
 
-const AUTH_ENDPOINT = '../api/auth.php';
+// Deteksi lokasi akses (Root atau Public) agar koneksi tidak putus
+const isPublicFolder = window.location.pathname.includes('/public/');
+const AUTH_ENDPOINT = isPublicFolder ? '../api/auth.php' : 'api/auth.php';
 
 class AuthService {
   constructor() {
@@ -15,12 +17,6 @@ class AuthService {
     }
   }
 
-  /**
-   * Real Login verification via PHP Backend
-   * @param {string} email 
-   * @param {string} password 
-   * @returns {Promise<Object>}
-   */
   async login(email, password) {
     try {
       const response = await fetch(AUTH_ENDPOINT, {
@@ -29,6 +25,11 @@ class AuthService {
         credentials: 'include',
         body: JSON.stringify({ action: 'login', email, password })
       });
+
+      if (!response.ok) {
+         const err = await response.json().catch(() => ({}));
+         throw new Error(err.message || 'Koneksi ke server gagal.');
+      }
 
       const result = await response.json();
 
@@ -41,15 +42,10 @@ class AuthService {
 
     } catch (error) {
       console.error('AuthService Error:', error);
-      return { success: false, message: 'Database connection failed!' };
+      return { success: false, message: error.message || 'Gagal terhubung ke sistem backend.' };
     }
   }
 
-  /**
-   * User Registration with Backend Storage and Password Hashing
-   * @param {Object} userData 
-   * @returns {Promise<Object>}
-   */
   async register(userData) {
     try {
       const response = await fetch(AUTH_ENDPOINT, {
@@ -61,14 +57,13 @@ class AuthService {
       const result = await response.json();
 
       if (result.success) {
-        // Automatically login after registration
         return this.login(userData.email, userData.password);
       }
       return { success: false, message: result.message };
 
     } catch (error) {
       console.error('AuthService Error:', error);
-      return { success: false, message: 'Registration failed at backend!' };
+      return { success: false, message: 'Pendaftaran gagal. Periksa koneksi Anda.' };
     }
   }
 

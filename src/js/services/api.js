@@ -16,7 +16,7 @@ class ApiService {
       return await response.json();
     } catch (error) {
       console.error('ApiService User Impact Error:', error);
-      return { success: false, message: 'Failed to connect to server' };
+      return { success: false, message: 'Gagal memuat data dampak lingkungan.' };
     }
   }
 
@@ -29,7 +29,7 @@ class ApiService {
       return await response.json();
     } catch (error) {
       console.error('ApiService Get Addresses Error:', error);
-      return { success: false, message: 'Failed to connect' };
+      return { success: false, message: 'Gagal memuat daftar alamat.' };
     }
   }
 
@@ -44,7 +44,7 @@ class ApiService {
       return await response.json();
     } catch (error) {
       console.error('ApiService Add Address Error:', error);
-      return { success: false, message: 'Failed to connect' };
+      return { success: false, message: 'Gagal menambah alamat.' };
     }
   }
 
@@ -59,7 +59,7 @@ class ApiService {
       return await response.json();
     } catch (error) {
       console.error('ApiService Set Default Address Error:', error);
-      return { success: false, message: 'Failed to connect' };
+      return { success: false, message: 'Gagal mengatur alamat utama.' };
     }
   }
 
@@ -74,21 +74,22 @@ class ApiService {
       return await response.json();
     } catch (error) {
       console.error('ApiService Delete Address Error:', error);
-      return { success: false, message: 'Failed to connect' };
+      return { success: false, message: 'Gagal menghapus alamat.' };
     }
   }
 
   /**
    * Fetch all products or filter by category
-   * @param {string} category 
-   * @returns {Promise<Array>}
    */
   static async getProducts(category = 'All') {
     try {
       const response = await fetch(`${API_BASE}products.php?category=${encodeURIComponent(category)}`, {
         credentials: 'include'
       });
-      if (!response.ok) throw new Error('Failed to fetch data from database');
+      if (!response.ok) {
+          const err = await response.json().catch(() => ({}));
+          throw new Error(err.message || 'Gagal mengambil data produk dari database.');
+      }
 
       const data = await response.json();
       return data.products || [];
@@ -100,7 +101,6 @@ class ApiService {
 
   /**
    * Get all categories from database
-   * @returns {Promise<Array>}
    */
   static async getCategories() {
     try {
@@ -113,17 +113,11 @@ class ApiService {
     }
   }
 
-  /**
-   * Get a single product by ID
-   */
   static async getProductById(id) {
     const products = await this.getProducts();
     return products.find(p => p.id == id) || null;
   }
 
-  /**
-   * Fetch reviews for a specific product
-   */
   static async getReviews(productId) {
     try {
       const response = await fetch(`${API_BASE}reviews.php?product_id=${productId}`, { credentials: 'include' });
@@ -135,29 +129,21 @@ class ApiService {
     }
   }
 
-  /**
-   * Submit a new review
-   */
   static async submitReview(reviewData) {
     try {
       const response = await fetch(`${API_BASE}reviews.php`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify(reviewData)
       });
       return await response.json();
     } catch (error) {
       console.error('ApiService Submit Review Error:', error);
-      return { success: false, message: 'Failed to connect to server' };
+      return { success: false, message: 'Gagal mengirim ulasan.' };
     }
   }
 
-  /**
-   * Fetch all site testimonials
-   */
   static async getTestimonials() {
     try {
       const response = await fetch(`${API_BASE}testimonials.php`, { credentials: 'include' });
@@ -169,26 +155,20 @@ class ApiService {
     }
   }
 
-  /**
-   * Submit a new site testimonial
-   */
   static async submitTestimonial(testimonialData) {
     try {
       const response = await fetch(`${API_BASE}testimonials.php`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify(testimonialData)
       });
       return await response.json();
     } catch (error) {
       console.error('ApiService Submit Testimonial Error:', error);
-      return { success: false, message: 'Failed to connect to server' };
+      return { success: false, message: 'Gagal mengirim testimoni.' };
     }
   }
-  // --- E-Commerce Context (Cart, Wishlist, Orders) ---
 
   static async getCart(userId) {
     const res = await fetch(`${API_BASE}cart.php?user_id=${userId}`, { credentials: 'include' });
@@ -275,13 +255,11 @@ class ApiService {
     });
     return await res.json();
   }
-  // --- Eco Challenges ---
 
   static async getChallenges() {
     try {
       const response = await fetch(`${API_BASE}challenges.php?action=list`, { credentials: 'include' });
       const data = await response.json();
-      console.log('ApiService Challenges Data:', data);
       return data;
     } catch (error) {
       console.error('ApiService Challenges Error:', error);
@@ -294,12 +272,12 @@ class ApiService {
       const response = await fetch(`${API_BASE}challenges.php`, {
         method: 'POST',
         credentials: 'include',
-        body: formData // Note: formData handles multipart/form-data correctly
+        body: formData
       });
       return await response.json();
     } catch (error) {
       console.error('ApiService Submit Proof Error:', error);
-      return { success: false, message: 'Failed to connect to server' };
+      return { success: false, message: 'Gagal mengirim bukti tantangan.' };
     }
   }
 
@@ -346,39 +324,22 @@ class ApiService {
       return await response.json();
     } catch (error) {
       console.error('ApiService Verify Challenge Error:', error);
-      return { success: false, message: 'Failed to connect to server' };
+      return { success: false, message: 'Gagal memverifikasi tantangan.' };
     }
   }
 
-  static async getUserImpact() {
-    try {
-      const response = await fetch(`${API_BASE}challenges.php?action=user_impact`, { credentials: 'include' });
-      return await response.json();
-    } catch (error) {
-      console.error('ApiService Impact Error:', error);
-      return { success: false, message: 'Failed to connect to server' };
-    }
-  }
   static async adminAddChallenge(challengeData) {
     try {
       const response = await fetch(`${API_BASE}challenges.php`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify({
-          action: 'admin_add_challenge',
-          ...challengeData
-        })
+        body: JSON.stringify({ action: 'admin_add_challenge', ...challengeData })
       });
       return await response.json();
     } catch (error) {
       console.error('ApiService Admin Add Challenge Error:', error);
-      return {
-        success: false,
-        message: 'Connection failed'
-      };
+      return { success: false, message: 'Gagal menambah tantangan baru.' };
     }
   }
 
@@ -392,7 +353,7 @@ class ApiService {
       return await response.json();
     } catch (error) {
       console.error('ApiService Update Profile Error:', error);
-      return { success: false, message: 'Connection failed' };
+      return { success: false, message: 'Gagal memperbarui profil.' };
     }
   }
 }
