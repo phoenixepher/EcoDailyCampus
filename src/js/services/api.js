@@ -3,7 +3,8 @@
  * Handles data fetching from real PHP/MySQL endpoints.
  */
 
-const API_BASE = '../api/';
+const isPublicFolder = window.location.pathname.includes('/public/');
+const API_BASE = isPublicFolder ? '../api/' : 'api/';
 
 class ApiService {
   /**
