@@ -182,7 +182,7 @@ elseif ($method === 'POST') {
         }
         
         if (isset($_FILES['proof_image']) && $_FILES['proof_image']['error'] === 0) {
-            $uploadDir = '../public/uploads/challenges/';
+            $uploadDir = '../uploads/challenges/';
             if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
             
             $ext = pathinfo($_FILES['proof_image']['name'], PATHINFO_EXTENSION);
@@ -264,7 +264,7 @@ elseif ($method === 'POST') {
 
         $imgUrl = null;
         if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
-            $uploadDir = '../public/uploads/challenges/';
+            $uploadDir = '../uploads/challenges/';
             if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
             $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
             $fileName = 'ch_' . time() . '.' . $ext;
@@ -296,7 +296,7 @@ elseif ($method === 'POST') {
         $stmt->execute([$id]);
         $c = $stmt->fetch();
         if ($c && $c['image']) {
-            $imgPath = '../public/' . $c['image'];
+                $imgPath = '../' . $c['image'];
             if (file_exists($imgPath)) @unlink($imgPath);
         }
 
@@ -330,7 +330,7 @@ elseif ($method === 'POST') {
         // Handle image update
         $imgUrl = null;
         if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
-            $uploadDir = '../public/uploads/challenges/';
+            $uploadDir = '../uploads/challenges/';
             if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
             $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
             $fileName = 'ch_' . time() . '.' . $ext;

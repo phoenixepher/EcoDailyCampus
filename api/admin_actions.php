@@ -130,7 +130,7 @@ if ($method === 'POST') {
             $prodId = (int)$pdo->lastInsertId();
 
             // Handle image uploads (max 5)
-            $uploadDir  = '../public/uploads/';
+            $uploadDir  = '../uploads/';
             $savedPaths = saveUploadedImages('images', $uploadDir, 5);
 
             // Default placeholder if no image uploaded
@@ -182,7 +182,7 @@ if ($method === 'POST') {
             ]);
 
             // Handle new image uploads
-            $uploadDir  = '../public/uploads/';
+            $uploadDir  = '../uploads/';
             $savedPaths = saveUploadedImages('images', $uploadDir, 5);
 
             if (!empty($savedPaths)) {
@@ -234,7 +234,7 @@ if ($method === 'POST') {
 
             // Delete physical file if stored locally
             if ($imageUrl && !str_starts_with($imageUrl, 'http')) {
-                $filePath = '../public/' . ltrim($imageUrl, '/');
+                $filePath = '../' . ltrim($imageUrl, '/');
                 if (file_exists($filePath)) unlink($filePath);
             }
 

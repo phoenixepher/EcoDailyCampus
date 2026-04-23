@@ -3,7 +3,7 @@
  * Handles data fetching from real PHP/MySQL endpoints.
  */
 
-const API_BASE = '../api/';
+const API_BASE = 'api/';
 
 class ApiService {
   /**
