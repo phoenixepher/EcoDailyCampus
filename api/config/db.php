@@ -30,10 +30,17 @@ try {
 } catch (PDOException $e) {
     header('Content-Type: application/json');
     http_response_code(500);
+    $errorMsg = $e->getMessage();
+    $friendlyMsg = 'Database connection failed!';
+    
+    if (strpos($errorMsg, 'could not find driver') !== false) {
+        $friendlyMsg = 'Error: Driver PostgreSQL (pdo_pgsql) tidak ditemukan di XAMPP Anda. Silakan aktifkan di php.ini.';
+    }
+
     echo json_encode([
         'success' => false, 
-        'message' => 'Database connection failed!',
-        'error' => $e->getMessage()
+        'message' => $friendlyMsg,
+        'error' => $errorMsg
     ]);
     exit();
 }
