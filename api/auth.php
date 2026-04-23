@@ -43,10 +43,12 @@ if ($method === 'POST') {
                     'email' => $user['email'],
                     'role' => $user['role'],
                     'avatar' => $user['avatar'],
-                    'points' => (int)$user['eco_points'],
-                    'wasteSaved' => (float)$user['waste_saved'],
+                    'bio' => $user['bio'],
+                    'fakultas' => $user['fakultas'],
                     'prodi' => $user['prodi'],
-                    'classCode' => $user['class_code']
+                    'classCode' => $user['class_code'],
+                    'points' => (int)$user['eco_points'],
+                    'wasteSaved' => (float)$user['waste_saved']
                 ]
             ]);
         } else {

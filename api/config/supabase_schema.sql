@@ -18,6 +18,10 @@ CREATE TABLE IF NOT EXISTS users (
     avatar VARCHAR(255),
     eco_points INTEGER DEFAULT 0,
     waste_saved DECIMAL(10,2) DEFAULT 0,
+    bio TEXT,
+    fakultas VARCHAR(255),
+    prodi VARCHAR(255),
+    class_code VARCHAR(50),
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
